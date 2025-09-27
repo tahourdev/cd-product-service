@@ -1,0 +1,27 @@
+# Namespace to deploy into (optional; Argo CD can also create it)
+namespace: product
+
+image:
+  imageRepository: docker.io/keanghor31/product-service
+  tag: "0.0.0"            # Jenkins updates this
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []       # e.g. ["regcred"] if your Docker Hub is private
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+resources: {}
+# resources:
+#   requests:
+#     cpu: "100m"
+#     memory: "256Mi"
+#   limits:
+#     cpu: "500m"
+#     memory: "512Mi"
+
+env: []                    # e.g. [{ name: SPRING_PROFILES_ACTIVE, value: "prod" }]
